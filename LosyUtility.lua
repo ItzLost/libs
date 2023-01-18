@@ -29,7 +29,7 @@ function lib:IsChar()
     local plr = game:GetService("Players").LocalPlayer
     if plr.Character then
         if plr.Character:FindFirstChild("HumanoidRootPart") then
-            if plr.Character.Humanoid then
+            if plr.Character:FindFirstChild("Humanoid") then
                 return(true)
             end
         end
