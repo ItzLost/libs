@@ -102,6 +102,7 @@ function lib:Notif(Title, Text, Time)
 end
 
 function lib:UseTool(Tool)
+    local plr = game:GetService("Players").LocalPlayer
     if plr.Character then
         if not plr.Character:FindFirstChild(Tool) and plr.Backpack:FindFirstChild(Tool) then
             plr.Character.Humanoid:EquipTool(plr.Backpack[Tool])
