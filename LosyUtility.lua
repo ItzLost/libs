@@ -101,4 +101,12 @@ function lib:Notif(Title, Text, Time)
     Notification.Notify(Title, Text, lib.Icon, {Duration = Time, GradientSettings = {GradientEnabled = false, Retract = true, SolidColor = Color3.fromRGB(150, 0, 0)}, Main = {BackgroundColor3 = Color3.fromRGB(15, 0, 0)}})
 end
 
+function lib:UseTool(Tool)
+    if plr.Character then
+        if not plr.Character:FindFirstChild(Tool) and plr.Backpack:FindFirstChild(Tool) then
+            plr.Character.Humanoid:EquipTool(plr.Backpack[Tool])
+        end
+    end
+end
+
 return(lib)
