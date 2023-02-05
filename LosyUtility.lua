@@ -92,6 +92,35 @@ function lib:ConvertToLetter(number)
     return(round(number))
 end
 
+function lib:ConvertToNumber(String)
+    local split
+    if String:lower():find("k") then
+        split = string.split(String:lower(), "k")
+        return(tonumber(split[1]) * 10e2)
+    end
+    if String:lower():find("m") then
+        split = string.split(String:lower(), "m")
+        return(tonumber(split[1]) * 10e5)
+    end
+    if String:lower():find("b") then
+        split = string.split(String:lower(), "b")
+        return(tonumber(split[1]) * 10e8)
+    end
+    if String:lower():find("t") then
+        split = string.split(String:lower(), "t")
+        return(tonumber(split[1]) * 10e11)
+    end
+    if String:lower():find("qa") then
+        split = string.split(String:lower(), "qa")
+        return(tonumber(split[1]) * 10e14)
+    end
+    if String:lower():find("qi") then
+        split = string.split(String:lower(), "qi")
+        return(tonumber(split[1]) * 10e17)
+    end
+    return(tonumber(String))
+end
+
 function lib:Notif(Title, Text, Time)
     local Notification = loadstring(game:HttpGet("https://api.irisapp.ca/Scripts/IrisBetterNotifications.lua"))()
     getgenv().IrisAd = true
