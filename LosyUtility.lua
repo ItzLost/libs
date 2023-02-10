@@ -28,8 +28,8 @@ end
 function lib:IsChar()
     local plr = game:GetService("Players").LocalPlayer
     if plr.Character then
-        if plr.Character.HumanoidRootPart then
-            if plr.Character.Humanoid then
+        if plr.Character:FindFirstChild("HumanoidRootPart") then
+            if plr.Character:FindFirstChild("Humanoid") then
                 return(true)
             end
         end
@@ -134,34 +134,6 @@ function lib:UseTool(Tool)
     if plr.Character then
         if not plr.Character:FindFirstChild(Tool) and plr.Backpack:FindFirstChild(Tool) then
             plr.Character.Humanoid:EquipTool(plr.Backpack[Tool])
-        end
-    end
-end
-
-function lib:PathFindWalkTo(coords)
-    local path = game:GetService("PathfindingService"):CreatePath()
-    local plr = game:GetService("Players").LocalPlayer
-    while wait() do
-        if (plr.Character.HumanoidRootPart.Position - coords).Magnitude <= 5 then
-            return(true)
-        end
-        local success = pcall(function()
-            path:ComputeAsync(plr.Character.HumanoidRootPart.Position, coords)
-        end)
-        if not success then
-            return(false)
-        end
-        if success and path.Status == Enum.PathStatus.Success then
-            local waypoints = path:GetWaypoints()
-            local dist
-            for _, waypoint in ipairs(waypoints) do
-                local wppos = waypoint.Position
-                plr.Character.Humanoid:MoveTo(wppos)
-                repeat
-                    dist = (wppos - plr.Character.HumanoidRootPart.Position).Magnitude
-                    wait()
-                until(dist <= 5)
-            end
         end
     end
 end
