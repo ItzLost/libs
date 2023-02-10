@@ -52,7 +52,7 @@ function lib:ServerHop()
             end
         end
         if #servers > 0 then
-            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], plr)
+            game:GetService("TeleportService"):TeleportToPlaceInstance(game.PlaceId, servers[math.random(1, #servers)], game:GetService("Players").LocalPlayer)
         else
             game:GetService("TeleportService"):Teleport(game.PlaceId)
         end
@@ -131,6 +131,7 @@ function lib:Notif(Title, Text, Time)
 end
 
 function lib:UseTool(Tool)
+    local plr = game:GetService("Players").LocalPlayer
     if plr.Character then
         if not plr.Character:FindFirstChild(Tool) and plr.Backpack:FindFirstChild(Tool) then
             plr.Character.Humanoid:EquipTool(plr.Backpack[Tool])
