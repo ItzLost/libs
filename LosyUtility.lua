@@ -9,7 +9,7 @@ function lib:Kill(path, obj)
     end
     for _, v in ipairs(children) do
         if path:FindFirstChild(obj) then
-            path[obj]:Destroy()
+            v:Destroy()
             return(true)
         end
     end
